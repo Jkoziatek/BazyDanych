@@ -1,0 +1,13 @@
+create table izba (adres_budynku varchar(140)primary key, nazwa_izby varchar(100),metraz int unsigned,wlasciciel int, foreign key (wlasciciel) references
+ postac (id_postaci) on delete set null);
+
+alter table izba drop primary key;
+
+alter table izba add primary key(adres_budynku, nazwa_izby);
+
+alter table izba add column kolor_izby enum('czarny','czerwony','zielony','zolty','niebieski') after metraz;
+
+
+alter table izba alter kolor_izby set default 'czarny';
+
+insert into izba (adres_budynku, nazwa_izby, metraz, wlasciciel) values('porzeczkowa_21', 'spizarnia', '60',  '1');
