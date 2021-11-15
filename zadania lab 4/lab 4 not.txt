@@ -1,0 +1,49 @@
+select * from postac where rodzaj='wiking';
+
+select * from postac where rodzaj='wiking' order by wiek; \\sortuje po koleji po wieku (asc) rosnaco sortuje (desc) malejaco sortuje  
+zad 1
+
+alternatywne wylaczanie sprawdzania poprawnosci klucz obcych w danej bazie 
+set foreign_key_check = 0;
+usuwanie klucza obcego
+
+aleter table walizka/przetwory/itd. drop foreign key... _ibfk_...;
+
+mozemy sprobowac usunac klucz g³ówny 
+alter table postac drop primary key;
+jednak musimy pozbyc sie atrybutu auto_increment 
+alter table postac modify id_postaci int;
+
+
+
+2 zad 
+alter table postac add column pesel char(11);
+uzupelnic kolumne pesel danymi - aktualne jest tam wartosc null która nie jest unikalna 
+update ...
+
+alter table postac add primary key(pesel);
+
+alter table 
+insert into 
+
+
+
+zad 3 
+select nazwa form postac where nazwa like 'A%' \\\ a i inne znaki 
+
+select nazwa form postac where nazwa like '%o%' \\\ wszedzie 
+
+
+update postac set statek='' where nazwa like '%a%';
+
+select nazwa form postac 
+where nazwa like '%a%';
+where nazwa like 'A%';
+
+select nazwa from postac where nazwa REGEXP '.*';
+
+B)
+update statek set ladownosc
+ 
+B) alter table ...
+C) 

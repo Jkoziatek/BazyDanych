@@ -1,0 +1,100 @@
+zad 1
+select * from postac order by wiek desc limit 2;
+
+alter table walizka drop foreign key walizka_ibfk_1;
+
+delete from postac where nazwa = 'Egil';
+/////
+zad 2 
+show create table przetwory;
+
+alter table przetwory drop foreign key przetwory_ibfk_2;
+
+alter table postac modify id_postaci int;
+
+alter table postac add column pesel char(11);
+
+alter table postac add primary key(pesel);
+
+update postac set pesel=98432195892 where id_postaci='1';
+
+update postac set pesel=45798215634 where id_postaci='2';
+
+update postac set pesel=97548124631 where id_postaci='3';
+
+update postac set pesel=31548798652 where id_postaci='4';
+
+update postac set pesel=31642798456 where id_postaci='5';
+
+update postac set pesel=87365920122 where id_postaci='6';
+
+update postac set pesel=93817392097 where id_postaci='7';
+
+alter table postac modify  rodzaj enum('wiking','ptak','kobieta','syrena') DEFAULT NULL;
+
+insert into postac values('8','Gertruda_Nieszera','syrena','1880-02-07','141','syrena','byrding','87635201923');
+/////
+zad 3
+
+update postac set statek='byrding' where nazwa like '%a%';
+
+update statek set max_ladownosc= (max_ladownosc *0.7) where data_wodowania<'1989-01-01';
+
+
+select wiek from postac where wiek < 1000;
+//////
+zad 4
+alter table postac modify  rodzaj enum('wiking','ptak','kobieta','syrena','waz') DEFAULT NULL;
+
+
+insert into postac values(9, 'loko', 'waz', '2000-01-01', 21, null, null, null);
+
+create table marynarz like postac;
+
+insert into marynarz select * from postac where statek is not Null;
+
+alter table marynarz add foreign key (statek) references statek(nazwa_statku) on delete cascade;
+\\\\\\
+
+zad 5
+
+update marynarz set statek ='Null' 
+
+delete from marynarz where nazwa = 'Dan';
+
+delete from statek;
+
+alter table postac drop foreign key postac_ibfk_1;
+
+create table zwierz(id_zwierz int primary key auto_increment,nazwa varchar(50), wiek int);
+
+insert into zwierz select id_postaci, nazwa, wiek from postac where rodzaj='syrena' or rodzaj='ptak' or rodzaj='waz';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
