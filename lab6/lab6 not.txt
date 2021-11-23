@@ -1,0 +1,34 @@
+avg() srednia 
+count() zalicza ilosc elementów
+sum() suma wartosci
+min () minmum 	
+max() maximum
+grupujemy dane po kolumnie rodzaj i liczymy sume w kolumnie udzwig dla kazdej grupy
+select rodzaj, sum(udzwig) from kreatura group by rodzaj;
+
+unikalna lista wartosci z kolumny rodzaj
+select cdistinct rodzaj from kreatura;
+zliczamy ilosc unikalnych wartosci w kolumnie rodzaj
+select count(distinct rodzaj) from kreatura;  
+
+select rodzaj, avg (waga) from kreatura group by rodzaj having avg(waga) > 50;
+
+# złączanie wewnętrzne
+select * from kreatura , ekwipunek 
+where kreatura.idKreatury=ekwipunek.idKreatury;
+# to samo ale używając INNER JOIN
+select * from kreatura k
+INNER JOIN ekwipunek e ON k.idKreatury=e.idKreatury;
+
+# left join
+select k.nazwa, k.idKreatury, e.idKreatury from kreatura k
+LEFT JOIN ekwipunek e ON k.idKreatury=e.idKreatury
+where e.idKreatury is NULL;
+# podzapytanie
+select idKreatury from kreatura where idKreatury not in
+(select distinct idKreatury from ekwipunek
+where idKreatury is not NULL);
+
+
+
+
