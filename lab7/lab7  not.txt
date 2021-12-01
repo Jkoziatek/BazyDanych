@@ -1,5 +1,5 @@
 lab 7 
-zad 1
+zad 1 kopiowanie do swojej bazy
 2
 zad 3.3 takie same 
 select * from kreatura k
@@ -29,6 +29,118 @@ inner join uczestnicy u on w.id_wyprawy=u.id_wyprawy
 inner join ekwipunek e on u.id_uczestnika=e.idKreatury
 inner join zasob z on e.idZasob=z.idZasobu
 group by w.id_wyprawy, z.nazwa;
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+01-12-2021
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+select concat(nazwa, '->', rodzaj) from kreatura;
+
+
+select rodzaj, count(*), group_concat(nazwa separator '|') from kreatura group by rodzaj;
+
+
+2zad 
+1
+krok 1 indetyfikacja niezbednych tabel 
+k2  z³aczanie tabel 
+k3 dodanie warnków filtrów 
+k4 dodanie agregacji grupowania 
+k5 sortowanie limit itp.
+
+
+select w.nazwa, count(u.id_uczestnika), group_concat(k.nazwa) 
+from wyprawa w
+inner join uczestnicy u on w.id_wyprawy=u.id_wyprawy
+inner join kreatura k on k.idKreatury=u.id_uczestnika
+group by w.id_wyprawy;
+
+
+sprawdzenie 
+
+select count(id_uczestnika) from uczestnicy
+where id_wyprawy=1 or id_wyprawy=2 ;
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+2
+k1 indetifikacja tablei kreataura wyprawa etapy_wyprawy, sektor
+
+select * from kreatura k
+inner join wyprawa w on w.kierownik=k.idKreatury
+inner join etapy_wyprawy ew on ew.idWyprawy=w.id_wyprawy
+inner join sektor s on ew.sektor=s.id_sektora;
+
+k2 dodanie czego szukamy i grupujemy po w.data_rozpoczenica ,ew.koljenosc 
+select w.data_rozpoczecia, w.nazwa,
+ k.nazwa,
+ ew.kolejnosc        
+ from kreatura k
+inner join wyprawa w on w.kierownik=k.idKreatury
+inner join etapy_wyprawy ew on ew.idWyprawy=w.id_wyprawy
+inner join sektor s on ew.sektor=s.id_sektora
+order by w.data_rozpoczecia, ew.kolejnosc; \\ grupujemy po w.data_rozpoczenica ,ew.koljenosc 
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+zad3 
+1
+k1 jakie tabele sa potrzebne   etapy wyprawy, etpay wyprawy sektor
+
+select count(distinct sektor) from etapy_wyprawy;
+
+
+select s.nazwa, count(ew.sektor) from sektor s
+left join sektor s on s.id_sektora=ew.sektor
+group by s.id_sektora;
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+ta dzia³a
+select s.nazwa,
+if(count(ew.sektor) is null, 0, count(ew.sektor))
+from sektor s
+left join etapy_wyprawy ew on s.id_sektora=ew.sektor
+group by s.id_sektora;
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+select s.nazwa, count(s.id_sektora) from etapy_wyprawy ew
+left join sektor s on s.id_sektora=ew.sektor;
+
+select s.nazwa, count(ew.sektor) from sektor s
+left join sektor s on s.id_sektora=ew.sektor
+group by s.id_sektora;
+
+select s.nazwa, ifnull(count(ew.sektor), 0 
+
+2
+ podrzebne tabele kreatura uczestnicy
+
+
+
+4 zadanie 
+1
+select idWyprawy, sum(length(dziennik)) 
+from etapy_wyprawy group by idWyprawy;
+
+
+select idWyprawy, sum(length(dziennik)) suma_dlugosci
+from etapy_wyprawy group by idWyprawy 
+having suma_dlugosci < 400; 
+
+2
+przyda sie 
+select w.nazwa, count(u.id_uczestnika), group_concat(k.nazwa) 
+from wyprawa w
+inner join uczestnicy u on w.id_wyprawy=u.id_wyprawy
+inner join kreatura k on k.idKreatury=u.id_uczestnika
+group by w.id_wyprawy;
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
