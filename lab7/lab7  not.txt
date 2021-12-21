@@ -131,14 +131,65 @@ inner join kreatura k on k.idKreatury=u.id_uczestnika
 group by w.id_wyprawy;
 
 
+15.12.2021
+select nazwa , length(nazwa) from kreatura;
+zlicza ile znaków jest w czyms
+
+select char_length("    ");
+
+select length(" ")
+
+select length(nazwa) + length(rodzaj) from kreatura;
+sumowanie rodzaj z nazwa ile ma znaków 
+
+select concat(concat(nazwa, rodzaj) from kreatura;
+z concatem ³aczy w jedno  
 
 
+nie zadzia³a 
+select length(nazwa + rodzaj) from kreatura;
+
+tak jest dobrze 
+select length(nazwa) + length(rodzaj) from kreatura;
 
 
+4.2zad 
+taki wynik musi byc 
+id wyprawy srednia
+1 2.800000
+2 12.516667
+3 14.814286
 
+select idWyprawy,avg(e.ilosc) from wyprawa;
 
+select nazwa,avg(e.ilosc) from wyprawa w
+inner join uczestnicy u on w.id_wyprawy=u.id_wyprawy
+inner join ekwipunek e on u.id_uczestnika=e.idKreatury
+group by w.id_wyprawy;
 
+roz
+select * from uczestnicy u
+inner join wyprawa w on w.id_wyprawy=u.id_wyprawy
+# inner join ekwipunek e on e.idKreatury=u.id_uczestnika
+# inner join zasob z on z.idZasobu=e.idZasobu
+inner join kreatura k on k.idKreatury=u.id_uczestnika
+inner join ekwipunek e on e.idKreatury=k.idKreatury
+inner join zasob z on z.idZasobu=e.idZasobu;
 
+inner join robi tak zeby by³a czesc wpólna 
+ 
+select w.nazwa, sum(e.ilosc*z.waga)/ count(distinct u.id_uczestnika) from uczestnicy u
+left join wyprawa w on w.id_wyprawy=u.id_wyprawy
+left join kreatura k on k.idKreatury=u.id_uczestnika
+left join ekwipunek e on e.idKreatury=k.idKreatury
+left join zasob z on z.idZasobu=e.idZasobu
+group by w.id_wyprawy;
+
+5.1 zad 
+
+select datediff(curdate(), dataUr) from kreatura;
+
+select abs(datediff(dataUr,curdate())) from kreatura; 
 
 
 

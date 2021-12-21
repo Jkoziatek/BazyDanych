@@ -54,6 +54,21 @@ from etapy_wyprawy group by idWyprawy
 having suma_dlugosci < 400; 
 
 2
+select w.nazwa, sum(e.ilosc*z.waga)/ count(distinct u.id_uczestnika) from uczestnicy u
+left join wyprawa w on w.id_wyprawy=u.id_wyprawy
+left join kreatura k on k.idKreatury=u.id_uczestnika
+left join ekwipunek e on e.idKreatury=k.idKreatury
+left join zasob z on z.idZasobu=e.idZasobu
+group by w.id_wyprawy;
+
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+zad 5
+
+zad.1
+select datediff(curdate(), dataUr) from kreatura;
+
+
 
 
 
