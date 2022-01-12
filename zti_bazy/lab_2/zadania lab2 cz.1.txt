@@ -1,0 +1,36 @@
+czesc 1
+zad 1
+select nazwisko from pracownik order by nazwisko asc ;
+zad 2
+select imie,nazwisko,pensja from pracownik where year(data_urodzenia)>1979;
+zad 3
+select * from pracownik where pensja BETWEEN 3500 and 5000;
+zad 4
+select towar from stan_magazynowy where ilosc>10;
+zad 5
+select * from towar where nazwa_towaru like 'a%' or nazwa_towaru like 'b%' or nazwa_towaru like 'c%';
+nie dokonczone
+zad 6
+select pelna_nazwa from klient where czy_firma=0;
+zad 7
+select id_zamowienia from zamowienie order by data_zamowienia desc limit 10;
+zad 8
+select id_pracownika,imie,nazwisko,pensja from pracownik order by pensja asc limit 5;
+zad 9
+select * from towar where nazwa_towaru not like '%a%' order by cena_zakupu desc limit 10;
+zad 10
+select t.nazwa_towaru,jm.id_jednostki,jm.nazwa,t.cena_zakupu from towar t
+inner join stan_magazynowy st on t.id_towaru=st.towar
+inner join jednostka_miary jm
+where jm.nazwa='szt' 
+order by t.nazwa_towaru asc;
+
+select t.nazwa_towaru,jm.id_jednostki,jm.nazwa,t.cena_zakupu from towar t
+inner join stan_magazynowy st on t.id_towaru=st.towar
+inner join jednostka_miary jm
+where jm.nazwa='szt' 
+order by t.cena_zakupu desc;
+zad 11
+create table towary_powyzej100 select * from __firma_zti.towar where cena_towaru >=100;
+zad 12
+create table pracownik_50_plus  select * from __firma_zti.pracownik where 2021-year(data_urodzenia) >= 50;

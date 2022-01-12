@@ -1,0 +1,38 @@
+zad 1
+SELECT imie, nazwisko , dzial from pracownik;
+2 zad 
+SELECT t.nazwa_towaru,k.nazwa_kategori,sm.ilosc from towar t
+inner join kategoria k on k.id_kategori=t.kategoria
+inner join stan_magazynowy sm on t.id_towaru=towar
+order by sm.ilosc asc
+; 
+3 zad 
+select * from zamowienie where status_zamowienia=6;
+zad 4
+select k.pelna_nazwa,ak.id_adresu,ak.miejscowosc from klient k
+right join adres_klienta ak on ak.klient=k.id_klienta
+where ak.miejscowosc='olsztyn';
+zad 5
+select * from jednostka_miary jm 
+left join stan_magazynowy sm on jm.id_jednostki=sm.jm
+where sm.jm is null;
+zad 6
+select z.numer_zamowienia,t.nazwa_towaru,sm.ilosc,t.cena_zakupu from zamowienie z 
+inner join pozycja_zamowienia pz on z.numer_zamowienia=pz.zamowienie
+inner join towar t on pz.towar=t.id_towaru
+inner join stan_magazynowy sm on t.id_towaru=sm.towar
+where year(data_zamowienia)=2018;
+zad 7
+create table towary_full_info select nazwa_towaru,cena_zakupu from __firma_zti.towar ;
+nie dokonczone 
+
+zad 8
+select * from zamowienie order by data_zamowienia asc limit 5;
+zad 9
+select status_zamowienia,nazwa_statusu_zamowienia from zamowienie 
+inner join status_zamowienia
+where status_zamowienia !=4;
+zad 10
+elect * from adres_klienta
+where kod not regexp '[0-9]{2}-[0-9]{3}';
+

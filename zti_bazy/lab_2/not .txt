@@ -1,0 +1,19 @@
+cz.2 zad 5 
+left join złoaczanie lub pod zapytanie 
+
+select * form kropniak.marynarz nazwabazy.nazwatabeli 
+
+7 tworzenie tabeli 
+
+10 like regularne 
+
+
+cz2 
+10 
+where kod not like 
+
+select * from adres_klienta
+where kod not regexp '[0-9{2}-[0-9]{3}';
+
+select * from adres_klienta
+where kod not regexp '[0-9]{2}-[0-9]{3}';
